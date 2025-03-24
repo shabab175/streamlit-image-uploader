@@ -59,3 +59,16 @@ else:
                 st.success(f"{uploaded_file.name} uploaded successfully")
             else:
                 st.error("Upload failed")
+    
+    # Camera Capture Feature
+    st.write("Or take a photo:")
+    camera_photo = st.camera_input("Take a photo")
+    
+    if camera_photo is not None:
+        st.image(camera_photo, caption="Captured Image")
+        if st.button("Save Captured Photo"):
+            response = upload_to_github(camera_photo, "captured_image.jpg")
+            if "content" in response:
+                st.success("Captured image uploaded successfully")
+            else:
+                st.error("Upload failed")
