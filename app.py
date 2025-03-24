@@ -28,17 +28,17 @@ def upload_to_github(image, filename):
     return response.json()
 
 # Authentication
-USER_CREDENTIALS = {"admin": "password123"}  # Change for real use
+USER_CREDENTIALS = {"admin": "password"}  # Change for real use
 
 def login_page():
     st.title("Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    
+
     if st.button("Login"):
         if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
             st.session_state["authenticated"] = True
-            st.experimental_rerun()
+            st.rerun()  # Updated line
         else:
             st.error("Invalid credentials")
 
