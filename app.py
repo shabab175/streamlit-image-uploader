@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import base64
+import datetime
 
 # Load secrets securely
 GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
@@ -65,10 +66,12 @@ else:
     camera_photo = st.camera_input("Take a photo")
     
     if camera_photo is not None:
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        unique_filename = f"captured_image_{timestamp}.jpg"
         st.image(camera_photo, caption="Captured Image")
         if st.button("Save Captured Photo"):
-            response = upload_to_github(camera_photo, "captured_image.jpg")
+            response = upload_to_github(camera_photo, unique_filename)
             if "content" in response:
-                st.success("Captured image uploaded successfully")
+                st.success(f"Captured image uploaded successfully as {unique_filename}")
             else:
                 st.error("Upload failed")
