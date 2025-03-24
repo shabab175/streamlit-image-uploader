@@ -1,13 +1,12 @@
 import streamlit as st
 import requests
 import base64
-from io import BytesIO
 
-# GitHub Configuration
-GITHUB_TOKEN = "your_github_token"  # Store this in Streamlit Secrets
-GITHUB_REPO = "your_github_username/your_repo"
-GITHUB_BRANCH = "main"
-UPLOAD_PATH = "uploads/"  # Folder inside the repo
+# Load secrets securely
+GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
+GITHUB_REPO = st.secrets["GITHUB_REPO"]
+GITHUB_BRANCH = st.secrets["GITHUB_BRANCH"]
+UPLOAD_PATH = st.secrets["UPLOAD_PATH"]
 
 def upload_to_github(image, filename):
     url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{UPLOAD_PATH}{filename}"
