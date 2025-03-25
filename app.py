@@ -29,7 +29,7 @@ def upload_to_github(image, filename):
     return response.json()
 
 # Authentication
-USER_CREDENTIALS = {"admin": "password"}  # Change for real use
+USER_CREDENTIALS = {"shami": "shami"}  # Change for real use
 
 def login_page():
     st.title("Login")
@@ -50,6 +50,7 @@ if not st.session_state["authenticated"]:
     login_page()
 else:
     st.title("Image Upload")
+    st.write("Welcome shami 😘")
     uploaded_files = st.file_uploader("Upload Images", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
     
     if uploaded_files:
