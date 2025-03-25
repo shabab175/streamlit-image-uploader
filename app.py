@@ -49,8 +49,7 @@ if "authenticated" not in st.session_state:
 if not st.session_state["authenticated"]:
     login_page()
 else:
-    st.title("Image Upload")
-    st.write("Welcome shami 😘")
+    st.title("Welcome shami 😘")
     uploaded_files = st.file_uploader("Upload Images", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
     
     if uploaded_files:
